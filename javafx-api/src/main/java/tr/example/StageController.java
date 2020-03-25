@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 
 public class StageController implements Serializable {
     private Class<?> starterClass;
+    private Stage primaryStage;
     private static StageController instance;
     Logger logger = Logger.getLogger(StageController.class.getName());
 
@@ -32,11 +33,12 @@ public class StageController implements Serializable {
     }
 
     public void startStage(Stage stage){
+        primaryStage = stage;
         FXMLLoader fxmlLoader = ControllerUtil.getInstance().createLoader(starterClass);
         try{
             Parent node = fxmlLoader.load();
             if(node != null)
-            stage.setScene(new Scene(node));
+                stage.setScene(new Scene(node));
         }
         catch (Exception ex){
             logger.log(Level.SEVERE, ex.toString());
@@ -57,8 +59,9 @@ public class StageController implements Serializable {
                 logger.log(Level.SEVERE, ex.toString());
             }
             stage.setScene(scene);
-            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initModality(Modality.NONE);
             stage.initStyle(StageStyle.UNDECORATED);
+            stage.initOwner(primaryStage);
             stage.setAlwaysOnTop(true);
             stage.show();
         });
