@@ -8,5 +8,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface View {
-    String value() default "";
+    String sceneId();
+
+    String value();
+
+    String image() default "";
 }

@@ -5,7 +5,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-@View("FirstView.fxml")
+@View(value = "FirstView.fxml", image = "/icons/settings.png", sceneId = "firstView")
 public class FirstViewController implements Initializable {
 
     @Override

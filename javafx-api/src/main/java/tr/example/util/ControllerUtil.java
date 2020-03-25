@@ -21,12 +21,16 @@ public class ControllerUtil {
     public <T> FXMLLoader createLoader(Class<?> controller){
         try{
             T controllerInstance = (T) controller.newInstance();
-            URL fxmlPath = controller.getClass().getResource("/" + getFxmlName(controllerInstance));
-            FXMLLoader fxmlLoader = new FXMLLoader(fxmlPath);
-            fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
-            fxmlLoader.setController(controllerInstance);
-            fxmlLoader.setControllerFactory(param -> controllerInstance);
-            return fxmlLoader;
+            View view = getControllerProperties(controller);
+            if(view != null){
+                URL fxmlPath = controller.getClass().getResource("/" + view.value());
+                FXMLLoader fxmlLoader = new FXMLLoader(fxmlPath);
+                fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
+                fxmlLoader.setController(controllerInstance);
+                fxmlLoader.setControllerFactory(param -> controllerInstance);
+                return fxmlLoader;
+            }
+            return null;
         }
         catch (Exception ex){
             logger.log(Level.SEVERE, ex.toString());
@@ -34,13 +38,8 @@ public class ControllerUtil {
         }
     }
 
-
-    private String getFxmlName(Object controller){
-        String fxmlName = "";
-        View annotation = controller.getClass().getAnnotation(View.class);
-        if(annotation != null)
-            fxmlName = annotation.value();
-        return fxmlName;
+    public <T> View getControllerProperties(Class<?> controller) throws IllegalAccessException, InstantiationException {
+        T controllerInstance = (T) controller.newInstance();
+        return controllerInstance.getClass().getAnnotation(View.class);
     }
-
 }

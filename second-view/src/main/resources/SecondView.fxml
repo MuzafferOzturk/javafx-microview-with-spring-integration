@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<HBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      prefHeight="100.0" prefWidth="100.0" alignment="BOTTOM_CENTER"
+      fx:id="fxMainHBox" style="-fx-border-width: 3;-fx-border-color: red">
+    <Label text="SecondView" style="-fx-font-size: 15"/>
+
+</HBox>

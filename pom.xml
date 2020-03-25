@@ -8,6 +8,7 @@
         <module>main-view</module>
         <module>javafx-api</module>
         <module>first-view</module>
+        <module>second-view</module>
     </modules>
     <groupId>tr.example</groupId>
     <artifactId>javafx-microview-with-spring</artifactId>

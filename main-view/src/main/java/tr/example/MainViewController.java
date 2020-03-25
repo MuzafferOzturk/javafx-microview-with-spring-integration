@@ -8,7 +8,7 @@ import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-@View("MainView.fxml")
+@View(sceneId = "mainView", value = "MainView.fxml")
 public class MainViewController implements Initializable {
     @FXML
     HBox fxMainHBox;
